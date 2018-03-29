@@ -1,18 +1,22 @@
+var cheerio = require("cheerio");
+var axios = require("axios");
+var db = require(".././models");
+
 const scraperScript = function(req, res) {
   axios.get("http://www.echojs.com/").then(function(response) {
     var $ = cheerio.load(response.data);
     $("article h2").each(function(i, element) {
       var result = {};
-      result.title = $(this)
+      result.headline = $(this)
         .children("a")
         .text();
-      result.link = $(this)
+      result.url = $(this)
         .children("a")
         .attr("href");
 
-      db.Article.create(result)
-        .then(function(dbArticle) {
-          console.log(dbArticle);
+      db.Headline.create(result)
+        .then(function(dbHeadline) {
+          console.log(dbHeadline);
         })
         .catch(function(err) {
           return res.json(err);

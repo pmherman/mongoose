@@ -2,17 +2,27 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 var HeadlineSchema = new Schema({
-  title: {
+  headline: {
     type: String,
     required: true
   },
-  link: {
+  url: {
     type: String,
     required: true
   },
   note: {
     type: Schema.Types.ObjectId,
     ref: "Note"
+  },
+  saved: {
+    type: Boolean,
+    default: false
+  },
+  summary: {
+    type: String,
+  },
+  date: {
+    type: Date,
   }
 });
 

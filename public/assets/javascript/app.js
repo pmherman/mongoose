@@ -1,23 +1,24 @@
-$(document).on("click", "#scrapeModal", function(e) {
+
+function displayNote(e) {
     e.preventDefault();
-    $.ajax({ url: "/scrape" });
-    console.log("Scrape Completed!");
-});
-
-
-function displayNote(event) {
-	event.preventDefault();
-	var id = $(this).attr("value");
-	$("#addNote").attr("value", id);
-	$.get("/" + id, function(data) {
-		$.get("/note/" + id, function(data) {
-			if (data) {
-				$("#noteTitle").val(data.title);
-				$("#noteBody").val(data.body);
-            }
-            window.location.href = "/saved";
-		});
-	});
+    var thisId = $(this).attr("value");
+  
+    // Now make an ajax call for the Article
+    $.ajax({
+      method: "GET",
+      url: "/save/" + thisId
+    })
+      // With that done, add the note information to the page
+      .then(function(data) {
+        console.log(data);
+        console.log(thisId);
+        if (data.note) {
+            $("#noteTitle").val(data.note.title);
+            $("#noteBody").val(data.note.body);
+            
+            console.log("noteTitle: " + data.note.title);
+        }
+      });
 
 }
 
@@ -34,6 +35,6 @@ function newNote(e) {
     })
 }
 // Save Note button in modal
-$(document).on("click", "#addNote", newNote);
+$("#addNote").on("click", newNote);
 //Edit Note button on saved page 
-$(document).on("click", ".editNote", displayNote);
+$(".editNote").on("click", displayNote);

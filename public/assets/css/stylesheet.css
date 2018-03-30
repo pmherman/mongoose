@@ -6,6 +6,20 @@
     font-weight: bold;
     border: 0px;
 }
+.jumbotron {
+    color: black;
+    background-color: #00A5DA;
+}
+.navbar {
+    background-color: #89D6FF;
+}
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand {
+    color: black;
+}
+.navbar-default .navbar-nav>.active>a {
+    color: white;
+    background-color: #246F97;
+}
 
 /* Scrape Modal */
 iframe {
@@ -21,3 +35,5 @@ iframe {
     border: 2px solid black;
     margin: 5px;
 }
+
+/* Body Panels */

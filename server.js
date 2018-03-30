@@ -33,15 +33,21 @@ app.engine("handlebars", exphbs({ defaultLayout: "main", partialsDir: path.join(
 app.set("view engine", "handlebars");
 
 //---------------Connect to the Mongo DB---------------//
-mongoose.connect("mongodb://localhost/mongoScraper");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraper";
 
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
+});
 //---------------Main Routes---------------//
 app.get("/scrape", scraperScript);
 app.use("/", view)
 
 //---------------Headline Routes---------------//
 app.use("/", headlineAPI);
-app.use("/note", notesAPI);
+app.use("/", notesAPI);
 
 //---------------Start the server---------------//
 app.listen(PORT, function() {

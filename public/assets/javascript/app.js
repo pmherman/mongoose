@@ -1,4 +1,5 @@
-$("#scrapeModal").on("click", function(e) {
+$(document).on("click", "#scrapeModal", function(e) {
     e.preventDefaults();
     $.ajax({ url: "/scrape" });
+    console.log("Scrape Completed!");
 });

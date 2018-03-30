@@ -30,24 +30,26 @@
     </header>
     <div class="container-fluid">
         <div class="col-lg-12">
-            <h1>test</h1>
-            {{#if headline}}
+            <h1>New Articles</h1>
                 {{#each headline}}
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>{{this.headline}}</h4>
+                    {{#unless this.saved}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>{{this.headline}}</h4>
+                            </div>
+                            <div class="panel-body">
+                                <p>{{this.summary}}</p>
+                                <a href={{this.url}} target="_blank">{{this.url}}</a>
+                                <br>
+                            </div>
+                            <div class="panel-footer">
+                                <form action="/save/{{this.id}}" method="POST">
+                                    <button type="submit" class="btn btn-warning save" value="{{this.status}}">{{this.status}}</button>
+                                </form>
+                            </div>                        
                         </div>
-                        <div class="panel-body">
-                            <a href={{this.url}} target="_blank">{{this.url}}</a>
-                            <br>
-                        </div>
-                        <div class="panel-footer">
-                            <button type="button" class="btn btn-warning save" data-id={{this._id}}>Save</button>
-                            <button type="button" class="btn btn-success addNote">Add a Note</button>
-                        </div>                        
-                    </div>
+                    {{/unless}}    
                 {{/each}}
-            {{/if}}
         </div>
     </div>
 

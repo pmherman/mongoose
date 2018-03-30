@@ -3,16 +3,19 @@ var axios = require("axios");
 var db = require(".././models");
 
 const scraperScript = function(req, res) {
-  axios.get("http://www.echojs.com/").then(function(response) {
+  axios.get("http://www.nytimes.com/").then(function(response) {
     var $ = cheerio.load(response.data);
-    $("article h2").each(function(i, element) {
+    $("article").each(function(i, element) {
       var result = {};
       result.headline = $(this)
-        .children("a")
+        .children(".story-heading")
         .text();
       result.url = $(this)
         .children("a")
         .attr("href");
+      result.summary = $(this)
+        .children(".summary")
+        .text();
 
       db.Headline.create(result)
         .then(function(dbHeadline) {

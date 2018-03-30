@@ -6,3 +6,11 @@
     font-weight: bold;
     border: 0px;
 }
+
+/* Scrape Modal */
+iframe {
+    display: none;
+}
+.modal-header, .modal-body, .modal-footer {
+    background-color: lavender;
+}

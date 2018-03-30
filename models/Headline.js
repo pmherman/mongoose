@@ -23,6 +23,11 @@ var HeadlineSchema = new Schema({
   },
   date: {
     type: Date,
+    default: Date.now
+  },
+  status: {
+    type: String,
+    default: "Save This Article"
   }
 });
 

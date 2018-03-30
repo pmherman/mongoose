@@ -11,6 +11,13 @@
 iframe {
     display: none;
 }
-.modal-header, .modal-body, .modal-footer {
+#scrapeModal .modal-header, #scrapeModal .modal-body, #scrapeModal .modal-footer {
     background-color: lavender;
+}
+
+/* Notes Modal */
+#noteTitle, #noteBody {
+    width: 100%;
+    border: 2px solid black;
+    margin: 5px;
 }

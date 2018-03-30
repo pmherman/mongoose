@@ -17,10 +17,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li class="active"><a href="/saved">Saved</a></li>
-                                        <li>
-                        <form action="/scrape">
-                            <button type="submit" id="scrape" class="btn btn-success">SCRAPE HEADLINES</button>
-                        </form>
+                    <li>
+                         <button type="button" id="scrape" class="btn btn-success" data-toggle="modal" data-target="#scrapeModal">SCRAPE HEADLINES</button>
                     </li>
                 </ul>
                 </div><!-- /.navbar-collapse -->
@@ -48,7 +46,7 @@
                             <div class="panel-footer">
                                 <form action="/save/{{this.id}}" method="POST">
                                     <button type="submit" class="btn btn-warning save" value="{{this.status}}">{{this.status}}</button>
-                                    <button type="button" class="btn btn-success" value="{{this._id}}">Edit Note</button>
+                                    <button type="button" class="btn btn-success editNote" data-toggle="modal" data-target="#noteModal" value="{{this._id}}">Edit Note</button>
                                 </form>
                             </div>                        
                         </div>

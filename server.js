@@ -17,6 +17,7 @@ var view = require("./routes/view");
 
 //---------------API Route---------------//
 var headlineAPI = require("./routes/api/headline");
+var notesAPI = require("./routes/api/notes")
 
 //---------------Initialize Express---------------//
 var app = express();
@@ -40,6 +41,7 @@ app.use("/", view)
 
 //---------------Headline Routes---------------//
 app.use("/", headlineAPI);
+app.use("/note", notesAPI);
 
 //---------------Start the server---------------//
 app.listen(PORT, function() {

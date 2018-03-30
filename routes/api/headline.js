@@ -16,11 +16,4 @@ router.post("/save/:id", function(req, res) {
 	});
 });
 
-router.get("/api", function(req, res) {
-    db.Headline.find({}), function(err, data) {
-        res.json(data);
-        console.log("test");
-    }
-})
-
 module.exports = router;

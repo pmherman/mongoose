@@ -1,17 +1,20 @@
 $(document).ready(function() {
     function displayNote(e) {
         e.preventDefault();
-        var thisId = $(this).attr("value");    
+        $("#noteTitle").val("");
+        $("#noteBody").val("");
+        var thisId = $(this).attr("value");
+        console.log("ID: " + this.id);    
         $.ajax({
         method: "GET",
         url: "/save/" + thisId
         })
         .then(function(data) {
+            $(".modalTitle").html("<h4>" + data.headline + "</h4>");
             if (data.note) {
-                $(".modalTitle").html("<h4>" + data.headline + "</h4>");
                 $("#noteTitle").val(data.note.title);
                 $("#noteBody").val(data.note.body);
-            }
+            } 
         });
 
     }
@@ -40,7 +43,7 @@ $(document).ready(function() {
     // Save Note button in modal
     $(document).on("click", "#addNote", newNote);
     //Edit Note button on saved page 
-    $(document).on("click", "#editNote", displayNote);
+    $(document).on("click", ".editNote", displayNote);
     //Refreshes page when scrape is executed
     $(document).on("click", "#scrapeDismiss", scrape);
 });

@@ -15,6 +15,7 @@ router.post("/note/:id", function(req, res) {
   });
 
 router.get("/save/:id", function(req, res) {
+  console.log("id: " + req.params.id);
   db.Headline.findOne({ _id: req.params.id })
     .populate("note")
     .then(function(dbHeadline) {

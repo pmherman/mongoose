@@ -3,19 +3,17 @@ function displayNote(e) {
     e.preventDefault();
     var thisId = $(this).attr("value");
   
-    // Now make an ajax call for the Article
     $.ajax({
       method: "GET",
       url: "/save/" + thisId
     })
-      // With that done, add the note information to the page
       .then(function(data) {
-        console.log(data);
-        console.log(thisId);
         if (data.note) {
+            $(".modalTitle").html("<h4>" + data.headline + "</h4>");
             $("#noteTitle").val(data.note.title);
             $("#noteBody").val(data.note.body);
-            
+            console.log("Title: " + data.headline);
+            console.log("ID: " + thisId);
             console.log("noteTitle: " + data.note.title);
         }
       });
@@ -31,10 +29,9 @@ function newNote(e) {
         body: $("#noteBody").val().trim()
     };
     $.post("/note/" + id, note, function(data) {
-        window.location.href = "/saved";
     })
 }
 // Save Note button in modal
-$("#addNote").on("click", newNote);
+$(document).on("click", "#addNote", newNote);
 //Edit Note button on saved page 
-$(".editNote").on("click", displayNote);
+$(document).on("click", ".editNote", displayNote);

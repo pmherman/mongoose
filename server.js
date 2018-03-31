@@ -7,7 +7,7 @@ var methodOverride = require('method-override');
 
 //---------------Require all models---------------//
 var db = require("./models");
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 //---------------Require scripts---------------//
 var scraperScript = require("./scripts/scrape");
@@ -52,5 +52,5 @@ app.use("/", notesAPI);
 //---------------Start the server---------------//
 app.listen(PORT, function() {
     console.log("🌎  App running on port " + PORT + "! 🌎");
-    console.log("Local Host: http://localhost:3000");
+    console.log("Local Host: http://localhost:" + PORT);
   });

@@ -40,7 +40,7 @@ $(document).ready(function() {
     // Save Note button in modal
     $(document).on("click", "#addNote", newNote);
     //Edit Note button on saved page 
-    $(".col-lg-12").on("click", ".editNote", displayNote);
+    $(document).on("click", "#editNote", displayNote);
     //Refreshes page when scrape is executed
     $(document).on("click", "#scrapeDismiss", scrape);
 });

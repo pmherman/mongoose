@@ -3,14 +3,15 @@ $(document).ready(function() {
         e.preventDefault();
         $("#noteTitle").val("");
         $("#noteBody").val("");
-        var thisId = $(this).attr("value");
-        console.log("ID: " + this.id);    
+        console.log("ID: " + this.id);
+        thisId = this.id;    
         $.ajax({
         method: "GET",
-        url: "/save/" + thisId
+        url: "/save/" + this.id
         })
         .then(function(data) {
             $(".modalTitle").html("<h4>" + data.headline + "</h4>");
+            $("#hiddenIdValue").val(thisId);
             if (data.note) {
                 $("#noteTitle").val(data.note.title);
                 $("#noteBody").val(data.note.body);
@@ -20,7 +21,7 @@ $(document).ready(function() {
     }
 
     function newNote(e) {
-        var thisId = $(".editNote").attr("value");
+        var thisId = $("#hiddenIdValue").val();
         console.log("id: " + this.Id);
         $.ajax({
             method: "POST",

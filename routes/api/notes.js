@@ -4,7 +4,9 @@ var db = require("../../models");
 router.post("/note/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
-        return db.Headline.findOneAndUpdate(req.params.id, { note: dbNote._id }, { new: true });
+        console.log("API Artical ID:" + req.params.id);
+        record = db.Headline.findOneAndUpdate({_id: req.params.id}, { note: dbNote._id }, { new: true });
+        return record;
       })
       .then(function(dbHeadline) {
         res.json(dbHeadline);
